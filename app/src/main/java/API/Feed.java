@@ -121,6 +121,7 @@ public class Feed {
             JSONObject testObject = new JSONObject(bufferResponse);
             JSONArray testArray = new JSONArray(bufferResponse);
 
+
             Feed.response = new JSONObject(bufferResponse);
 
         } catch (IOException e) {
