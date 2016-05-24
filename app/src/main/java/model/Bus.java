@@ -11,7 +11,7 @@ import java.util.List;
  * the route, the direction, and the location of the bus.
  */
 public class Bus {
-<<<<<<< HEAD
+
     private String vehicleNumber;
     private String tripID;
     private Route route;
@@ -96,9 +96,5 @@ public class Bus {
     public String getVehicleNumber() {
         return vehicleNumber;
     }
-=======
 
-
-
->>>>>>> 012af08b00ef9dbe7925bf10498cf87486f48dfe
 }
