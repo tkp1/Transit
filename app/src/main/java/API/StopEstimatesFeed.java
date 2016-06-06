@@ -14,7 +14,7 @@ import model.Exceptions.NoDataReceivedException;
  */
 
 public class StopEstimatesFeed {
-    private static String API_KEY = "L9U5nUq6dvcRSvJlGr7M";
+    private static String API_KEY = "";
 
     /**
      *  Opens an http connection and retrieves JSON data for stop estimates information
