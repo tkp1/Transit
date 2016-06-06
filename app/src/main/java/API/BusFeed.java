@@ -32,8 +32,6 @@ public class BusFeed {
         return feedLineString;
     }
 
-
-
     private static String retrieveFeed(HttpURLConnection url) {
         String bufferResponse = "";
         try {

@@ -1,3 +1,4 @@
+/*
 package model.Test;
 
 import org.junit.Test;
@@ -8,9 +9,11 @@ import model.Route;
 
 import static org.junit.Assert.*;
 
+*/
 /**
  * Created by Tak on 31/05/2016.
- */
+ *//*
+
 public class RouteTest {
 
     @Test public void testRouteConstructor(){
@@ -27,4 +30,4 @@ public class RouteTest {
         }
     }
 
-}
+}*/

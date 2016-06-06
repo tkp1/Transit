@@ -14,37 +14,37 @@ public class Bus {
 
     private String vehicleNumber;
     private String tripID;
-    private Route route;
+    private String routeNumber;
     private String direction;
+    private String destination;
     private String pattern;
-    private int longitude;
-    private int lattiude;
+    private double longitude;
+    private double lattiude;
     private String recordedTime;
-    private String routeMap;
-    private URL href;
+    private String href;
     private int arrivalTime;
 
     public Bus (
             String vehicleNumber,
             String tripID,
-            Route route,
+            String routeNumber,
             String direction,
+            String destination,
             String pattern,
-            int longitude,
-            int lattiude,
+            double longitude,
+            double lattiude,
             String recordedTime,
-            String routeMap,
-            URL href
+            String href
     ) {
         this.vehicleNumber = vehicleNumber;
         this.tripID = tripID;
-        this.route = route;
+        this.routeNumber = routeNumber;
         this.direction = direction;
+        this.destination = destination;
         this.pattern = pattern;
         this.longitude = longitude;
         this.lattiude = lattiude;
         this.recordedTime = recordedTime;
-        this.routeMap = routeMap;
         this.href = href;
     }
 
@@ -57,23 +57,25 @@ public class Bus {
         return tripID;
     }
 
-    public Route getRoute() {
-        return route;
+    public String getRoute() {
+        return routeNumber;
     }
 
     public String getDirection() {
         return direction;
     }
 
+    public String getDestination() {return destination;}
+
     public String getPattern() {
         return pattern;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public int getLattiude() {
+    public double getLattiude() {
         return lattiude;
     }
 
@@ -81,11 +83,8 @@ public class Bus {
         return recordedTime;
     }
 
-    public String getRouteMap() {
-        return routeMap;
-    }
 
-    public URL getHref() {
+    public String getHref() {
         return href;
     }
 

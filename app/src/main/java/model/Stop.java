@@ -8,30 +8,28 @@ import java.util.List;
 public class Stop {
 
     private int stopNo;
-    private String Name;
-    private int bayNo;
+    private String name;
+    private String bayNo;
     private String city;
     private String onStreet;
     private String atStreet;
     private double latitude;
     private double longitude;
     private boolean wheelchairAccess;
-    private double distance;
-    private List<Route> routes;
+    private int distance;
 
     public Stop(int stopNo,
                 String name,
-                int bayNo,
+                String bayNo,
                 String city,
                 String onStreet,
                 String atStreet,
                 double latitude,
                 double longitude,
                 boolean wheelchairAccess,
-                double distance,
-                List<Route> routes) {
+                int distance) {
         this.stopNo = stopNo;
-        Name = name;
+        this.name = name;
         this.bayNo = bayNo;
         this.city = city;
         this.onStreet = onStreet;
@@ -40,29 +38,6 @@ public class Stop {
         this.longitude = longitude;
         this.wheelchairAccess = wheelchairAccess;
         this.distance = distance;
-        this.routes = routes;
-    }
-
-    public Stop(int stopNo,
-                String name,
-                String city,
-                double longitude,
-                double latitude,
-                String atStreet,
-                String onStreet,
-                boolean wheelchairAccess,
-                double distance,
-                int bayNo) {
-        this.stopNo = stopNo;
-        Name = name;
-        this.city = city;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.atStreet = atStreet;
-        this.onStreet = onStreet;
-        this.wheelchairAccess = wheelchairAccess;
-        this.distance = distance;
-        this.bayNo = bayNo;
     }
 
     public int getStopNo() {
@@ -70,10 +45,10 @@ public class Stop {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public int getBayNo() {
+    public String getBayNo() {
         return bayNo;
     }
 
@@ -105,7 +80,19 @@ public class Stop {
         return distance;
     }
 
-    public List<Route> getRoutes() {
-        return routes;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Stop stop = (Stop) o;
+
+        return stopNo == stop.stopNo;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return stopNo;
     }
 }
