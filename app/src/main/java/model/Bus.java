@@ -1,11 +1,5 @@
 package model;
 
-/**
- * Created by Trevor on 5/14/2016.
- */
-
-import java.net.URL;
-import java.util.List;
 
 /** represents a bus object containing time to arrival to a particular stop, bus ID
  * the route, the direction, and the location of the bus.
@@ -13,76 +7,85 @@ import java.util.List;
 public class Bus {
 
     private String vehicleNumber;
-    private String tripID;
-    private String routeNumber;
+    private int tripID;
+    private String routeNo;
     private String direction;
-    private String destination;
     private String pattern;
-    private double longitude;
-    private double lattiude;
+    private Double longitude;
+    private Double lattiude;
+    private String destination;
     private String recordedTime;
     private String href;
     private int arrivalTime;
 
-    public Bus (
+    public Bus(
             String vehicleNumber,
-            String tripID,
-            String routeNumber,
+            int tripID,
+            String routeNo,
             String direction,
-            String destination,
             String pattern,
-            double longitude,
-            double lattiude,
+            Double longitude,
+            Double lattiude,
+            String destination,
             String recordedTime,
             String href
     ) {
         this.vehicleNumber = vehicleNumber;
         this.tripID = tripID;
-        this.routeNumber = routeNumber;
+        this.routeNo = routeNo;
         this.direction = direction;
-        this.destination = destination;
         this.pattern = pattern;
         this.longitude = longitude;
         this.lattiude = lattiude;
+        this.destination = destination;
         this.recordedTime = recordedTime;
         this.href = href;
+
     }
 
+    /**
+     * sets the arrival time of a bus
+     * @param arrivalTime
+     */
     public void setArrivalTime(int arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public String getTripID() {
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
 
+    public int getTripID() {
         return tripID;
     }
 
-    public String getRoute() {
-        return routeNumber;
+    public String getRouteNo() {
+        return routeNo;
     }
 
     public String getDirection() {
         return direction;
     }
 
-    public String getDestination() {return destination;}
-
     public String getPattern() {
         return pattern;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public double getLattiude() {
+    public Double getLattiude() {
         return lattiude;
+    }
+
+    public String getDestination() {
+        return destination;
     }
 
     public String getRecordedTime() {
         return recordedTime;
     }
-
 
     public String getHref() {
         return href;
@@ -91,9 +94,5 @@ public class Bus {
     public int getArrivalTime() {
         return arrivalTime;
     }
-
-    public String getVehicleNumber() {
-        return vehicleNumber;
-    }
-
 }
+

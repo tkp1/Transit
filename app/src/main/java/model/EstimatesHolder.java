@@ -1,29 +1,29 @@
 package model;
 
 /**
- * Created by Tak on 01/06/2016.
+ * a holder to keep a schedule (an arrival estimate) with a particular stop number
  */
-public class EstimatesHolder implements Comparable<EstimatesHolder>{
+
+public class EstimatesHolder implements Comparable<EstimatesHolder> {
     private Schedule schedule;
     private Stop stop;
 
-    public EstimatesHolder (Schedule schedule, Stop stop){
-        this.stop = stop;
+    public EstimatesHolder(Schedule schedule, Stop stop){
         this.schedule = schedule;
+        this.stop = stop;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public Stop getStop(){
+        return this.stop;
     }
 
-    public Stop getStop() {
-        return stop;
+    public Schedule getSchedule(){
+        return this.schedule;
     }
-
 
     @Override
-    public int compareTo(EstimatesHolder another) {
-        return this.getSchedule().getExpectedCountdown() -
-                another.getSchedule().getExpectedCountdown();
+    public int compareTo(EstimatesHolder holder) {
+        return (this.getSchedule().getExpectedCountdown() -
+                holder.getSchedule().getExpectedCountdown());
     }
 }

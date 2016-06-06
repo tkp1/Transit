@@ -1,14 +1,12 @@
 package model;
 
-import java.util.List;
-
 /**
- * Created by Trevor on 5/14/2016.
+ * A bus stop, retrieved from the current location with a position and other information
  */
 public class Stop {
 
     private int stopNo;
-    private String name;
+    private String Name;
     private String bayNo;
     private String city;
     private String onStreet;
@@ -16,7 +14,7 @@ public class Stop {
     private double latitude;
     private double longitude;
     private boolean wheelchairAccess;
-    private int distance;
+    private double distance;
 
     public Stop(int stopNo,
                 String name,
@@ -27,9 +25,9 @@ public class Stop {
                 double latitude,
                 double longitude,
                 boolean wheelchairAccess,
-                int distance) {
+                double distance) {
         this.stopNo = stopNo;
-        this.name = name;
+        Name = name;
         this.bayNo = bayNo;
         this.city = city;
         this.onStreet = onStreet;
@@ -40,12 +38,13 @@ public class Stop {
         this.distance = distance;
     }
 
+
     public int getStopNo() {
         return stopNo;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public String getBayNo() {
@@ -80,6 +79,7 @@ public class Stop {
         return distance;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,4 +95,5 @@ public class Stop {
     public int hashCode() {
         return stopNo;
     }
+
 }

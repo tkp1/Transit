@@ -1,7 +1,7 @@
 package model.Exceptions;
 
-/**
- * Created by Tak on 02/06/2016.
- */
-public class NoDataReceivedException {
+public class NoDataReceivedException extends Exception {
+    public NoDataReceivedException() {
+        super("No Data Received From Request");
+    }
 }

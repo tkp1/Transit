@@ -1,7 +1,16 @@
 package steakknife.transit;
 
+import java.util.Comparator;
+
+import model.Route;
+
 /**
- * Created by Tak on 04/06/2016.
+ * compares routes by their first EstimatesHolders.
  */
-public class RouteComparator {
+
+public class RouteComparator implements Comparator<Route> {
+    @Override
+    public int compare(Route lhs, Route rhs) {
+        return lhs.findFirstEstimate().compareTo(rhs.findFirstEstimate());
+    }
 }

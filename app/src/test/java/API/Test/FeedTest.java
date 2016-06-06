@@ -1,12 +1,8 @@
 package API.Test;
 
-import android.location.Location;
-
 import org.junit.Test;
 
-import java.net.URL;
 import java.util.List;
-
 
 import API.BusDataParser;
 import API.BusFeed;
@@ -19,31 +15,44 @@ import model.Route;
 import model.Stop;
 
 /**
- * Created by Trevor on 5/14/2016.
+ * Created by Trevor
  */
 public class FeedTest {
 
     @Test
-    public void testSetUp() throws Exception {
-        List<Route> routes;
-        Stop stop = new Stop (0, "1", "2", "3", "4", "5", 6.0, 7.0, false, 8);
-        String response = StopEstimatesFeed.execute(58135);
-        routes = StopEstimatesDataParser.parse(response, stop);
+    public void testSetUp(){
+        List<Route> stopEstimatesData;
+        try {
+            String response = StopEstimatesFeed.execute(50217);
+            Stop testStop = new Stop(50539,"SomeName", "1", "Vancouver", "SomeStreet", "AnotherStreet", 0.1213, 0.4321,false, 1.01);
+            stopEstimatesData = StopEstimatesDataParser.parse(response, testStop);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void testStopsDataRetrievalAndParsing() {
-        List<Stop> listOfStops;
-        String string = "";
-        string.trim();
-        String response = StopsFeed.execute(200,49.263520, -123.138608);
-        listOfStops = StopsDataParser.parse(response);
+        List<Stop> stopsData;
+        try {
+            String response = StopsFeed.execute(200,49.263520, -123.138608);
+            stopsData = StopsDataParser.parse(response);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Test
     public void testBusDataRetrievalAndParsing() {
-        List<Bus> buses;
-        String response = BusFeed.execute(58135);
-        buses = BusDataParser.parse(response);
+        try {
+            String response = BusFeed.execute(50216);
+            List<Bus> buses = BusDataParser.parse(response);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

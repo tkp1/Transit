@@ -1,45 +1,57 @@
 package API;
 
-import android.location.Location;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
+
+import model.Exceptions.NoDataReceivedException;
 
 /**
- * Created by Tak on 24/05/2016.
+ *
+ * Communicates with the Translink API to retrieve a response from a request for stop information
+ * from a location
  */
 public class StopsFeed {
-    private static String API_KEY = "3u5DrRTEp1P6bMUlApvA";
-    public static String execute(int radius, double latitude, double longitude) {
-//   public static String execute(int radius, Location location) {
-//        double latitude = location.getLatitude();
-//        double longitude = location.getLongitude();
-        DecimalFormat decimalFormat = new DecimalFormat("#.000000");
+    private static String API_KEY = "";
+
+    /**
+     * Opens and http connection and retrieves JSON data for nearby stops
+     * @param radius the radius searched in meters
+     * @param latitude the latitude of the current location
+     * @param longitude the longitude of the current location
+     * @return a string of the response
+     * @throws NoDataReceivedException
+     */
+    public static String execute(int radius, double latitude, double longitude) throws NoDataReceivedException {
+
         String feedLineString = "";
         try {
-            URL url = new URL("http://api.translink.ca/rttiapi/v1/stops?apikey=" + API_KEY + "&lat="
-                    + decimalFormat.format(latitude) + "&long=" + decimalFormat.format(longitude) + "&radius=" + Integer.toString(radius));
+            DecimalFormat numberFormat = new DecimalFormat("#.000000");
+            URL url = new URL("http://api.translink.ca/rttiapi/v1/stops?apikey=" + API_KEY + "&lat=" + numberFormat.format(latitude) + "&long=" + numberFormat.format(longitude) + "&radius=" + Integer.toString(radius));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("accept", "application/json");
             feedLineString = retrieveFeed(urlConnection);
             urlConnection.disconnect();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new NoDataReceivedException();
         }
         return feedLineString;
     }
 
+    /**
+     * A function to get the response from the url
+     * @param url the url for the stop data request from a location
+     * @return a string of the response
+     * @throws IOException
+     */
+
     private static String retrieveFeed(HttpURLConnection url) throws IOException {
         String bufferResponse = "";
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.getInputStream()));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
@@ -48,6 +60,7 @@ public class StopsFeed {
         }
         bufferedReader.close();
         bufferResponse = stringBuilder.toString();
+
         return bufferResponse;
     }
 

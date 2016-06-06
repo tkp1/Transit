@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Transit</string>
+    <string name="app_name">Stops Around Me!!</string>
+    <string name="no_times_available">N/A</string>
+    <string name="no_stop_location">Data for route unavailable</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="no_information">No Data Found Around Here…</string>
+    <string name="translink_API_key"></string>
 </resources>

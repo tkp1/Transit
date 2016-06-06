@@ -1,21 +1,22 @@
 package model;
 
 /**
- * Created by Tak on 31/05/2016.
+ * a schedule for an arrival of a bus from a particular route, at a particular stop
  */
-public class Schedule {
-    private String pattern;
-    private String destination;
-    private String expectedLeaveTime;
-    private int expectedCountdown;
-    private String scheduleStatus;
-    private boolean cancelledTrip;
-    private boolean cancelledStop;
-    private boolean addedTrip;
-    private boolean addedStop;
-    private String lastUpdate;
 
-    public Schedule (
+public class Schedule implements Comparable<Schedule> {
+    private String Pattern;
+    private String Destination;
+    private String ExpectedLeaveTime;
+    private int ExpectedCountdown;
+    private String ScheduleStatus;
+    private boolean CancelledTrip;
+    private boolean CancelledStop;
+    private boolean AddedTrip;
+    private boolean AddedStop;
+    private String LastUpdate;
+
+    public Schedule(
             String pattern,
             String destination,
             String expectedLeaveTime,
@@ -27,55 +28,61 @@ public class Schedule {
             boolean addedStop,
             String lastUpdate
     ){
-        this.pattern = pattern;
-        this.destination = destination;
-        this.expectedLeaveTime = expectedLeaveTime;
-        this.expectedCountdown = expectedCountdown;
-        this.scheduleStatus = scheduleStatus;
-        this.cancelledTrip = cancelledTrip;
-        this.cancelledStop = cancelledStop;
-        this.addedTrip = addedTrip;
-        this.addedStop = addedStop;
-        this.lastUpdate = lastUpdate;
+        this.Pattern = pattern;
+        this.Destination = destination;
+        this.ExpectedLeaveTime = expectedLeaveTime;
+        this.ExpectedCountdown = expectedCountdown;
+        this.ScheduleStatus = scheduleStatus;
+        this.CancelledTrip = cancelledTrip;
+        this.CancelledStop = cancelledStop;
+        this.AddedTrip = addedTrip;
+        this.AddedStop = addedStop;
+        this.LastUpdate = lastUpdate;
     }
 
     public String getPattern() {
-        return pattern;
+        return Pattern;
     }
 
     public String getDestination() {
-        return destination;
+        return Destination;
     }
 
     public String getExpectedLeaveTime() {
-        return expectedLeaveTime;
+        return ExpectedLeaveTime;
     }
 
     public int getExpectedCountdown() {
-        return expectedCountdown;
+        return ExpectedCountdown;
     }
 
     public String getScheduleStatus() {
-        return scheduleStatus;
+        return ScheduleStatus;
     }
 
     public boolean isCancelledTrip() {
-        return cancelledTrip;
+        return CancelledTrip;
     }
 
     public boolean isCancelledStop() {
-        return cancelledStop;
+        return CancelledStop;
     }
 
     public boolean isAddedTrip() {
-        return addedTrip;
+        return AddedTrip;
     }
 
     public boolean isAddedStop() {
-        return addedStop;
+        return AddedStop;
     }
 
     public String getLastUpdate() {
-        return lastUpdate;
+        return LastUpdate;
+    }
+
+
+    @Override
+    public int compareTo(Schedule schedule) {
+        return (this.getExpectedCountdown() - schedule.getExpectedCountdown());
     }
 }
