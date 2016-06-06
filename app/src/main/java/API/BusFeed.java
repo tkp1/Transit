@@ -14,8 +14,7 @@ import model.Exceptions.NoDataReceivedException;
  * from a stop number
  */
 public class BusFeed {
-    private static String API_KEY = "";
-
+    private static final String APIkey = "";
     /**
      * Opens an http connection and retrieves JSON data for bus information
      * @param stopNumber the stop number from which bus information is requested
@@ -23,9 +22,10 @@ public class BusFeed {
      */
     public static String execute(int stopNumber) throws NoDataReceivedException {
 
-        String feedLineString = "";
+        String feedLineString;
         try {
-            URL url = new URL("http://api.translink.ca/rttiapi/v1/buses?apikey=" + API_KEY + "&stopNo=" + Integer.toString(stopNumber));
+            URL url = new URL("http://api.translink.ca/rttiapi/v1/buses?apikey=" +
+                    APIkey + "&stopNo=" + Integer.toString(stopNumber));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("accept", "application/json");
@@ -44,8 +44,7 @@ public class BusFeed {
      */
 
     private static String retrieveFeed(HttpURLConnection url) throws IOException{
-        String bufferResponse = "";
-
+        String bufferResponse;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.getInputStream()));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
@@ -54,7 +53,6 @@ public class BusFeed {
         }
         bufferedReader.close();
         bufferResponse = stringBuilder.toString();
-
         return bufferResponse;
     }
 

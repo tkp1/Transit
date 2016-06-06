@@ -15,7 +15,7 @@ import model.Exceptions.NoDataReceivedException;
  * from a location
  */
 public class StopsFeed {
-    private static String API_KEY = "";
+    private static final String APIKey = "";
 
     /**
      * Opens and http connection and retrieves JSON data for nearby stops
@@ -25,12 +25,15 @@ public class StopsFeed {
      * @return a string of the response
      * @throws NoDataReceivedException
      */
-    public static String execute(int radius, double latitude, double longitude) throws NoDataReceivedException {
+    public static String execute(int radius, double latitude, double longitude)
+            throws NoDataReceivedException {
 
-        String feedLineString = "";
+        String feedLineString;
         try {
             DecimalFormat numberFormat = new DecimalFormat("#.000000");
-            URL url = new URL("http://api.translink.ca/rttiapi/v1/stops?apikey=" + API_KEY + "&lat=" + numberFormat.format(latitude) + "&long=" + numberFormat.format(longitude) + "&radius=" + Integer.toString(radius));
+            URL url = new URL("http://api.translink.ca/rttiapi/v1/stops?apikey=" + APIKey
+                    + "&lat=" + numberFormat.format(latitude) + "&long=" +
+                    numberFormat.format(longitude) + "&radius=" + Integer.toString(radius));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("accept", "application/json");
@@ -50,8 +53,7 @@ public class StopsFeed {
      */
 
     private static String retrieveFeed(HttpURLConnection url) throws IOException {
-        String bufferResponse = "";
-
+        String bufferResponse;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.getInputStream()));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
@@ -60,7 +62,6 @@ public class StopsFeed {
         }
         bufferedReader.close();
         bufferResponse = stringBuilder.toString();
-
         return bufferResponse;
     }
 

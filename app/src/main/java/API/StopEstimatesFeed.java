@@ -14,7 +14,8 @@ import model.Exceptions.NoDataReceivedException;
  */
 
 public class StopEstimatesFeed {
-    private static String API_KEY = "";
+
+    private static final String APIKey = "";
 
     /**
      *  Opens an http connection and retrieves JSON data for stop estimates information
@@ -24,9 +25,10 @@ public class StopEstimatesFeed {
      */
 
     public static String execute(int stopNumber) throws NoDataReceivedException {
-        String feedLineString = "";
+        String feedLineString;
         try {
-            URL url = new URL("http://api.translink.ca/rttiapi/v1/stops/" + Integer.toString(stopNumber) + "/estimates?apikey=" + API_KEY);
+            URL url = new URL("http://api.translink.ca/rttiapi/v1/stops/" +
+                    Integer.toString(stopNumber) + "/estimates?apikey=" + APIKey);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.setRequestProperty("accept", "application/json");
@@ -47,7 +49,7 @@ public class StopEstimatesFeed {
 
 
     private static String retrieveFeed(HttpURLConnection url) throws IOException {
-        String bufferResponse = "";
+        String bufferResponse;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.getInputStream()));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
